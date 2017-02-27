@@ -1,0 +1,18 @@
+{
+  "name": "get-refile-url",
+  "version": "0.1.0",
+  "description": "Get Refile URL from key using SHA.",
+  "main": "lib/index.js",
+  "scripts": {
+  },
+  "author": "@evanxsummers",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evanx/get-refile-url.git"
+  },
+  "homepage": "https://github.com/evanx/get-refile-url",
+  "dependencies": {
+    "app-bin": "^0.1.3"
+  }
+}
