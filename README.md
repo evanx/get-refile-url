@@ -1,37 +1,27 @@
-# app-spec
+# get-refile-url
 
-Get application configuration from spec of required environment variables.
+Get Refile URL from key using SHA.
 
-## Usage
+See https://github.com/evanx/refile
 
-We define environment dependencies and defaults via a `spec` file:
+### Implementation
+
+See https://github.com/evanx/get-refile-url/blob/master/index.js
+
 ```javascript
-module.exports = {
-    description: 'Redis-based caching proxy for Google Maps API queries.',
-    required: {
-        redisHost: {
-            description: 'the Redis host',
-            default: 'localhost'
-        },
-        redisPort: {
-            description: 'the Redis port',
-            default: 6379
-        }
-    }
-}
+const crypto = require('crypto');
+
+module.exports = (refileDomain, key) => [
+    'https://' + config.refileDomain,
+    'key',
+    crypto.createHash('sha1').update(key).digest('hex').substring(0, 3),
+    key.replace(/\W/g, '-') + '.json'
+].join('/')
 ```
-
-The application `index.js` passes the `spec` definition and `main` (entry-point) function to the application archetype.
-```javascript
-require('redis-koa-app-rpf')(require('./spec'), require('./main'));
-```        
-
-The application archetype uses this library to parse the `config` from `process.env` according to the `spec` and to invoke the `main` function.
 
 ## Used by
 
-- https://github.com/evanx/redis-app-rpf
-- https://github.com/evanx/redis-koa-app-rpf
+- https://github.com/evanx/refile
 
 <hr>
 
